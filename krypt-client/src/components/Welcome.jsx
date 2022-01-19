@@ -1,4 +1,5 @@
 import { BsPlayCircle } from "react-icons/all";
+import { DigitalCard, GridProp, TransferForm } from "../units/";
 
 const Welcome = () => {
   const connectWallet = () => {
@@ -6,15 +7,15 @@ const Welcome = () => {
   };
 
   return (
-    <div className={"flex w-full justify-center items-center"}>
+    <div className={"md:flex my-auto w-full justify-center items-center"}>
       <div
         className={
-          "flex md:flex-row flex-col items-start justify-between md:p-20 py-12 px-4 m-4"
+          "flex md:flex-row flex-col items-start justify-between lg:ml-10 lg:m-0 px-4 m-4"
         }
       >
         <div
           className={
-            "flex flex-1 justify-start items-center md:items-start flex-col md:mr-10"
+            "flex w-fit justify-start items-center md:items-start flex-col md:mr-10"
           }
         >
           <h1
@@ -27,7 +28,7 @@ const Welcome = () => {
           </h1>
           <p
             className={
-              "text-center md:text-left mt-4 mb-12 text-white font-light md:w-9/12 w-11/12 text-base"
+              "text-center md:text-left mt-3 mb-6 text-white font-light md:w-9/12 w-11/12 text-base"
             }
           >
             Explore the crypto world. Buy and sell cryptocurrencies easily on
@@ -37,44 +38,26 @@ const Welcome = () => {
             type="button"
             onClick={() => connectWallet}
             className={
-              "w-52 flex justify-center items-center mb-5 bg-[#2952e3] py-4 px-6 rounded-full cursor-pointer hover:bg-[#2546bd] text-white font-semibold"
+              "flex justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] text-white font-bold"
             }
           >
             <div className={"flex justify-center items-center"}>
               <BsPlayCircle size={24} />
-              <p className={"ml-2"}>Connect Wallet</p>
+              <p className={"ml-2 text-sm"}>Connect Wallet</p>
             </div>
           </button>
 
-          <div className={"grid grid-cols-3 mt-12 w-full"}>
-            {[
-              "Reliability",
-              "Security",
-              "Ethereum",
-              "Web 3.0",
-              "Low fees",
-              "Blockchain",
-            ].map((item, index) => {
-              const rounded_class = [
-                "rounded-tl-xl",
-                "",
-                "rounded-tr-xl",
-                "rounded-bl-xl",
-                "",
-                "rounded-br-xl",
-              ];
-
-              return (
-                <div
-                  key={item + index}
-                  className={`${rounded_class[index]} sm:py-6 py-4 text-xs sm:text-lg font-normal text-white/70 flex justify-center items-center border-solid border-[0.5px] border-gray-400/50`}
-                >
-                  {item}
-                </div>
-              );
-            })}
-          </div>
+          <GridProp />
         </div>
+      </div>
+
+      <div
+        className={
+          "flex flex-col items-center justify-start w-full md:w-fit md:m-0 md:mr-4 lg:mx-8"
+        }
+      >
+        <DigitalCard />
+        <TransferForm />
       </div>
     </div>
   );

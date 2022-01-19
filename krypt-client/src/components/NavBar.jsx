@@ -26,7 +26,11 @@ const NavBar = () => {
       <div className={"flex flex-none justify-between mx-8 items-center"}>
         <img src={logo} alt={"logo"} className={"w-12 h-12 cursor-pointer"} />
         <button className={"md:hidden"} onClick={handleNavToggle}>
-          {toggleMenu ? <AiOutlineClose size={28} /> : <HiMenuAlt4 size={28} />}
+          {toggleMenu ? (
+            <AiOutlineClose size={28} color={"white"} />
+          ) : (
+            <HiMenuAlt4 size={28} color={"white"} />
+          )}
         </button>
       </div>
       <ul
@@ -48,7 +52,7 @@ const NavBar = () => {
       {toggleMenu && (
         <ul
           className={
-            "text-white md:hidden flex flex-col space-y-2 md:space-y-0 md:flex-row list-none justify-between items-center sm:shadow-none shadow-2xl sm:pb-0 pb-6"
+            "text-white md:hidden flex flex-col space-y-2 md:space-y-0 md:flex-row list-none justify-between items-center sm:pb-0 pb-3"
           }
         >
           {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => {
