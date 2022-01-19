@@ -1,0 +1,5 @@
+export { default as NavBar } from "./NavBar"
+export { default as Footer } from "./Footer"
+export { default as Services } from "./Services"
+export { default as Transcations } from "./Transcations"
+export { default as Welcome } from "./Welcome"
