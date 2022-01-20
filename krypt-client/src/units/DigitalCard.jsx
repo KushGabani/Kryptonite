@@ -1,4 +1,5 @@
-import { BsInfoCircle, SiEthereum } from "react-icons/all";
+import { BsInfoCircle } from "react-icons/bs";
+import { SiEthereum } from "react-icons/si";
 import { useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 

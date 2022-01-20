@@ -1,4 +1,6 @@
-import { BiSearchAlt, BsShieldFillCheck, RiHeart2Fill } from "react-icons/all";
+import { BiSearchAlt } from "react-icons/bi";
+import { BsShieldFillCheck } from "react-icons/bs";
+import { RiHeart2Fill } from "react-icons/ri";
 import { ServiceItem } from "../units";
 
 const serviceData = [

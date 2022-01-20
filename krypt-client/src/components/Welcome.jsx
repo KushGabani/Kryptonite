@@ -1,4 +1,4 @@
-import { BsPlayCircle } from "react-icons/all";
+import { BsPlayCircle } from "react-icons/bs";
 import { DigitalCard, GridProp, TransferForm } from "../units/";
 import { useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";

@@ -1,5 +1,5 @@
 import useFetch from "../hooks/useFetch";
-import { FaEthereum } from "react-icons/all";
+import { FaEthereum } from "react-icons/fa";
 
 const TransactionCard = ({
   addressTo,
