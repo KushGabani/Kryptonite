@@ -1,17 +1,18 @@
-import { Footer, NavBar, Services, Welcome } from "./components";
+import { Footer, NavBar, Services, Transactions, Welcome } from "./components";
 
 const App = () => {
   return (
-    <div className={"min-h-screen"}>
+    <div>
       <div
         className={
-          "gradient-bg-welcome flex flex-col justify-between items-center min-h-screen"
+          "gradient-bg-welcome flex flex-col justify-between items-center"
         }
       >
         <NavBar />
         <Welcome />
       </div>
       <Services />
+      <Transactions />
       <Footer />
     </div>
   );

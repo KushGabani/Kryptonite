@@ -28,11 +28,13 @@ const serviceData = [
 const Services = () => {
   return (
     <div
-      className={"w-full p-6 md:flex justify-center items-center bg-[#0f0e13]"}
+      className={
+        "w-full px-6 py-12 md:flex justify-center items-center bg-[#0f0e13]"
+      }
     >
       <div
         className={
-          "text-3xl p-8 font-bold flex-1 md:w-[60%] md:text-4xl text-white text-gradient lg:ml-10 lg:m-0 px-4 m-4 text-center md:text-left"
+          "text-3xl p-8 flex-1 md:w-[60%] md:text-4xl text-white text-gradient lg:ml-10 lg:m-0 px-4 m-4 text-center md:text-left"
         }
       >
         Services that we

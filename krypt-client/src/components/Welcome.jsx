@@ -4,10 +4,11 @@ import { useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 
 const Welcome = () => {
-  const { currentAccount, connectWallet } = useContext(TransactionContext);
+  const { currentAccount, connectWallet, logoutWallet } =
+    useContext(TransactionContext);
 
   return (
-    <div className={"md:flex my-auto w-full justify-center items-center"}>
+    <div className={"md:flex my-12 w-full justify-center items-center"}>
       <div
         className={
           "flex md:flex-row flex-col items-start justify-between lg:ml-10 lg:m-0 px-4 m-4"
@@ -32,22 +33,23 @@ const Welcome = () => {
             }
           >
             Explore the crypto world. Buy and sell cryptocurrencies easily on
-            Kryptonite
+            Kryptonite.
           </p>
 
           <button
             type="button"
-            onClick={connectWallet}
+            onClick={currentAccount ? logoutWallet : connectWallet}
             className={
-              "flex justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] text-white font-bold"
+              "flex justify-center items-center bg-[#2952e3] px-6 py-3 rounded-full cursor-pointer hover:bg-[#2546bd] text-white font-bold"
             }
           >
             <div className={"flex justify-center items-center"}>
               <BsPlayCircle size={24} />
-              <p className={"ml-2 text-sm"}>Connect Wallet</p>
+              <p className={"ml-2 text-sm"}>
+                {currentAccount ? "Log Out" : "Connect Wallet"}
+              </p>
             </div>
           </button>
-
           <GridProp />
         </div>
       </div>

@@ -1,6 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../utils/constants";
+import dummyData from "../utils/dummyData";
+
+// TEST RECEIVER ID: 0x1c085f805207f0FC534515A509A0D2cBb390038E
 
 export const TransactionContext = createContext();
 const { ethereum } = window;
@@ -19,9 +22,7 @@ const getEthereumContract = () => {
 
 export const TransactionProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [transactionCount, setTransactionCount] = useState(
-    localStorage.getItem("transactionCount")
-  );
+  const [transactions, setTransactions] = useState([]);
   const [currentAccount, setCurrentAccount] = useState("");
   const [transactionFormData, setTransactionFormData] = useState({
     addressTo: "",
@@ -57,10 +58,43 @@ export const TransactionProvider = ({ children }) => {
         console.log("Metamask account found!");
       } else {
         console.log("No accounts found on load...");
+        setCurrentAccount("");
       }
       console.log(accounts);
     } catch (error) {
       console.log("No Ethereum Object. Add Metamask if not already installed");
+    }
+  };
+
+  const getAllTransactions = async () => {
+    try {
+      if (!ethereum) return alert("Please install metamask!");
+      setIsLoading(true);
+
+      if (currentAccount) {
+        const { transactionContract } = getEthereumContract();
+        const availableTransactions =
+          await transactionContract.getAllTransactions();
+
+        setTransactions(
+          availableTransactions.map((transaction) => ({
+            addressTo: transaction.receiver,
+            addressFrom: transaction.sender,
+            timestamp: new Date(
+              transaction.timestamp.toNumber() * 1000
+            ).toLocaleString(),
+            amount: parseInt(transaction.amount._hex) / 10 ** 18, // convert HEX Gwei to int ETH
+            message: transaction.message,
+            keyword: transaction.keyword,
+          }))
+        );
+      } else {
+        setTransactions(dummyData);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -77,7 +111,6 @@ export const TransactionProvider = ({ children }) => {
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
-      throw new Error("No Ethereum Object");
     }
   };
 
@@ -86,6 +119,7 @@ export const TransactionProvider = ({ children }) => {
       // get the data from the transaction form.
 
       if (!ethereum) return alert("Please install metamask");
+      setIsLoading(true);
       const { addressTo, amount, keyword, twitter, message } =
         transactionFormData;
 
@@ -112,32 +146,42 @@ export const TransactionProvider = ({ children }) => {
         keyword
       );
 
-      setIsLoading(true);
       console.log(`loading transaction...${transactionHash.hash}`);
       await transactionHash.wait();
-
-      setIsLoading(false);
       console.log(`Transaction done! hash:${transactionHash.hash}`);
-
-      const transactionCount = await transactionContract.getTransactionCount();
-      setTransactionCount(transactionCount.toNumber());
     } catch (error) {
+      alert("A transaction error occurred!");
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  const logoutWallet = () => {
+    console.log("logout clicked");
+    setCurrentAccount("");
   };
 
   useEffect(() => {
     checkIfMetamaskExists().then();
+    getAllTransactions().then();
   }, []);
+
+  useEffect(() => {
+    getAllTransactions().then();
+  }, [currentAccount]);
 
   return (
     <TransactionContext.Provider
       value={{
         currentAccount,
         transactionFormData,
+        isLoading,
+        transactions,
         sendTransaction,
         handleFieldChange,
         connectWallet,
+        logoutWallet,
       }}
     >
       {children}

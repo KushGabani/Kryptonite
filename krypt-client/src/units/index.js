@@ -5,3 +5,4 @@ export { default as GridProp } from "./GridProp";
 export { default as InputField } from "./InputField";
 export { default as ServiceItem } from "./ServiceItem";
 export { default as SocialLink } from "./SocialLink";
+export { default as TransactionCard } from "./TransactionCard";

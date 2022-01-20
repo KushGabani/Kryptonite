@@ -1,11 +1,10 @@
 import { InputField } from "./index";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Loader } from "./";
 import { TransactionContext } from "../context/TransactionContext";
 
 const TransferForm = () => {
-  const [isLoading, setLoading] = useState(false);
-  const { transactionFormData, handleFieldChange, sendTransaction } =
+  const { transactionFormData, handleFieldChange, sendTransaction, isLoading } =
     useContext(TransactionContext);
 
   const handleSubmit = (e) => {

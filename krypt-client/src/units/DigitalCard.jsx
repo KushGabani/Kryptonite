@@ -1,6 +1,9 @@
 import { BsInfoCircle, SiEthereum } from "react-icons/all";
+import { useContext } from "react";
+import { TransactionContext } from "../context/TransactionContext";
 
 const DigitalCard = () => {
+  const { currentAccount } = useContext(TransactionContext);
   return (
     <div
       className={
@@ -17,7 +20,7 @@ const DigitalCard = () => {
         </div>
         <div>
           <p className={"text-white text-xs uppercase tracking-wider mb-1"}>
-            Address
+            {currentAccount.substring(0, 10) || "Address"}
           </p>
           <p className={"text-white/90 font-semibold tracking-wide text-xl"}>
             Ethereum
