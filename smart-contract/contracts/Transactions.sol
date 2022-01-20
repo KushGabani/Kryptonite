@@ -10,6 +10,7 @@ contract Transactions {
         address sender;
         address receiver;
         uint amount;
+        string twitter;
         string message;
         uint256 timestamp;
         string keyword;
@@ -20,6 +21,7 @@ contract Transactions {
     function addToBlockchain(
         address payable receiver,
         uint amount,
+        string memory twitter,
         string memory message,
         string memory keyword
     ) public {
@@ -33,6 +35,7 @@ contract Transactions {
                 msg.sender,
                 receiver,
                 amount,
+                twitter,
                 message,
                 block.timestamp,
                 keyword
