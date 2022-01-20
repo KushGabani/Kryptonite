@@ -1,12 +1,20 @@
 import { InputField } from "./index";
-import { useState } from "react";
-import Loader from "./Loader";
+import { useContext, useState } from "react";
+import { Loader } from "./";
+import { TransactionContext } from "../context/TransactionContext";
 
 const TransferForm = () => {
   const [isLoading, setLoading] = useState(false);
+  const { transactionFormData, handleFieldChange, sendTransaction } =
+    useContext(TransactionContext);
 
-  const handleSubmit = () => {
-    setLoading((prevState) => !prevState);
+  const handleSubmit = (e) => {
+    const { addressTo, amount, keyword, twitter, message } =
+      transactionFormData;
+    e.preventDefault();
+
+    if (!addressTo || !amount || !keyword || !twitter || !message) return;
+    sendTransaction();
   };
 
   return (
@@ -18,35 +26,36 @@ const TransferForm = () => {
       <InputField
         placeholder={"Address To"}
         name={"addressTo"}
+        classProps={`uppercase`}
         type={"text"}
-        handleChange={() => {}}
+        handleChange={(e) => handleFieldChange(e, "addressTo")}
       />
       <InputField
         placeholder={"Amount (ETH)"}
-        name={"amountEth"}
+        name={"amount"}
         type={"number"}
-        handleChange={() => {}}
+        handleChange={(e) => handleFieldChange(e, "amount")}
       />
 
       <InputField
         placeholder={"Keyword (GIF)"}
         name={"keyword"}
         type={"text"}
-        handleChange={() => {}}
+        handleChange={(e) => handleFieldChange(e, "keyword")}
       />
 
       <InputField
         placeholder={"Twitter @"}
         name={"twitter"}
         type={"text"}
-        handleChange={() => {}}
+        handleChange={(e) => handleFieldChange(e, "twitter")}
       />
 
       <InputField
-        placeholder={"Enter Message"}
+        placeholder={"Enter message"}
         name={"message"}
         type={"text"}
-        handleChange={() => {}}
+        handleChange={(e) => handleFieldChange(e, "message")}
       />
 
       <div className={"h-[1px] w-full bg-gray-400 my-2"} />

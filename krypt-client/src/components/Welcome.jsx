@@ -1,10 +1,10 @@
 import { BsPlayCircle } from "react-icons/all";
 import { DigitalCard, GridProp, TransferForm } from "../units/";
+import { useContext } from "react";
+import { TransactionContext } from "../context/TransactionContext";
 
 const Welcome = () => {
-  const connectWallet = () => {
-    console.log("Clicked!");
-  };
+  const { currentAccount, connectWallet } = useContext(TransactionContext);
 
   return (
     <div className={"md:flex my-auto w-full justify-center items-center"}>
@@ -34,18 +34,20 @@ const Welcome = () => {
             Explore the crypto world. Buy and sell cryptocurrencies easily on
             Kryptonite
           </p>
-          <button
-            type="button"
-            onClick={() => connectWallet}
-            className={
-              "flex justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] text-white font-bold"
-            }
-          >
-            <div className={"flex justify-center items-center"}>
-              <BsPlayCircle size={24} />
-              <p className={"ml-2 text-sm"}>Connect Wallet</p>
-            </div>
-          </button>
+          {!currentAccount && (
+            <button
+              type="button"
+              onClick={connectWallet}
+              className={
+                "flex justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] text-white font-bold"
+              }
+            >
+              <div className={"flex justify-center items-center"}>
+                <BsPlayCircle size={24} />
+                <p className={"ml-2 text-sm"}>Connect Wallet</p>
+              </div>
+            </button>
+          )}
 
           <GridProp />
         </div>
