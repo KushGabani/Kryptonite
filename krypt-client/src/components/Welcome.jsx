@@ -20,7 +20,7 @@ const Welcome = () => {
         >
           <h1
             className={
-              "text-3xl sm:text-5xl text-white text-gradient py-1 text-center md:text-left"
+              "text-3xl font-bold sm:text-5xl text-white text-gradient py-1 text-center md:text-left"
             }
           >
             Send Crypto <br />
@@ -34,20 +34,19 @@ const Welcome = () => {
             Explore the crypto world. Buy and sell cryptocurrencies easily on
             Kryptonite
           </p>
-          {!currentAccount && (
-            <button
-              type="button"
-              onClick={connectWallet}
-              className={
-                "flex justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] text-white font-bold"
-              }
-            >
-              <div className={"flex justify-center items-center"}>
-                <BsPlayCircle size={24} />
-                <p className={"ml-2 text-sm"}>Connect Wallet</p>
-              </div>
-            </button>
-          )}
+
+          <button
+            type="button"
+            onClick={connectWallet}
+            className={
+              "flex justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] text-white font-bold"
+            }
+          >
+            <div className={"flex justify-center items-center"}>
+              <BsPlayCircle size={24} />
+              <p className={"ml-2 text-sm"}>Connect Wallet</p>
+            </div>
+          </button>
 
           <GridProp />
         </div>
