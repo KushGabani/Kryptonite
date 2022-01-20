@@ -153,6 +153,7 @@ export const TransactionProvider = ({ children }) => {
       alert("A transaction error occurred!");
       console.log(error);
     } finally {
+      getAllTransactions().then();
       setIsLoading(false);
     }
   };
