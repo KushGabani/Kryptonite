@@ -4,7 +4,7 @@ const DigitalCard = () => {
   return (
     <div
       className={
-        "p-3 justify-between items-start flex rounded-xl w-full h-36 w-64 my-5 eth-card"
+        "p-3 justify-between items-start flex rounded-xl w-full h-36 w-64 my-5 eth-card shadow-lg"
       }
     >
       <div className={"flex flex-col justify-between items-start h-full pr-4"}>
